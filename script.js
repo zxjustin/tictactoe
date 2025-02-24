@@ -8,7 +8,7 @@ function createBoard(){
     console.log(board);
     return board;
 }
-console.log("test");
+
 let gameBoard = createBoard();
 
 function placeMarker(board, marker, position){
@@ -26,14 +26,15 @@ function checkWinner(){
         [0,3,6], [1,4,7], [2,5,8], //vertical
         [0,4,8], [2,4,6] //diagonal
     ];
+    //array destructing
     for (let i = 0; i < winningCombos.length; i++){
         const [a,b,c] = winningCombos[i];
-        if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]){
+        if(gameBoard[a] && gameBoard[a] ===gameBoard[b] && gameBoard[a] === gameBoard[c]){
             console.log('Winner! is', gameBoard[a]);
             return gameBoard[a];
         }
-    }
-    return null;
+    }  
+    return null
 }
 placeMarker(gameBoard, 'O', 0);
 placeMarker(gameBoard, 'O', 4);
