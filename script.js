@@ -36,6 +36,20 @@ function checkWinner(){
     }  
     return null
 }
+
+function renderBoard(){
+    const boardContainer = document.querySelector('.board');
+    boardContainer.innerHTML = '';
+    
+    gameBoard.forEach((value , index) => {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.textContent = value;
+
+        cell.addEventListener("click", () => placeMarker(gameBoard, 'X', index));
+        boardContainer.appendChild(cell);
+    })
+}
 placeMarker(gameBoard, 'O', 0);
 placeMarker(gameBoard, 'O', 4);
 placeMarker(gameBoard, 'O', 8);
