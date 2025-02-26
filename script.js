@@ -9,19 +9,24 @@ function createBoard(){
 
 let gameBoard = createBoard();
 let currentPlayer = 'X';
+let gameOver = false;
 
 function placeMarker(board, marker, position){
+    if (gameOver)
+        return;
     if(board[position] === ''){
         board[position] = marker;
         renderBoard(); //render the board update ui
         if (checkWinner()){
+            alert(`Player ${marker} wins!`);
+            gameOver = true;
             console.log('Winner is', marker);
             return;
         }
-
         //switch turn
         currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
     } else {
+        //alert('This spot is already taken!');
         console.log('This spot is already taken!');
     } 
 }
@@ -35,7 +40,7 @@ function checkWinner(){
     //array destructing
     for (let i = 0; i < winningCombos.length; i++){
         const [a,b,c] = winningCombos[i];
-        if(gameBoard[a] && gameBoard[a] ===gameBoard[b] && gameBoard[a] === gameBoard[c]){
+        if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]){
             console.log('Winner! is', gameBoard[a]);
             return gameBoard[a];
         }
