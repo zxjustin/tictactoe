@@ -1,20 +1,26 @@
 //empty 3x3 grid
 function createBoard(){
-    let board = [
+    return [
         '','','',
         '','','',
         '','',''
     ];
-    console.log(board);
-    return board;
 }
 
 let gameBoard = createBoard();
+let currentPlayer = 'X';
 
 function placeMarker(board, marker, position){
     if(board[position] === ''){
         board[position] = marker;
-        console.log(board);
+        renderBoard(); //render the board update ui
+        if (checkWinner()){
+            console.log('Winner is', marker);
+            return;
+        }
+
+        //switch turn
+        currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
     } else {
         console.log('This spot is already taken!');
     } 
@@ -38,19 +44,18 @@ function checkWinner(){
 }
 
 function renderBoard(){
-    const boardContainer = document.querySelector('.board');
-    boardContainer.innerHTML = '';
+    const boardContainer = document.getElementById('board');
+    boardContainer.innerHTML = "";
     
     gameBoard.forEach((value , index) => {
         const cell = document.createElement('div');
         cell.classList.add('cell');
-        cell.textContent = value;
+        cell.textContent = value; // puts 'X' or 'O' in the cell
 
-        cell.addEventListener("click", () => placeMarker(gameBoard, 'X', index));
+        cell.addEventListener("click", () => placeMarker(gameBoard, currentPlayer, index));
         boardContainer.appendChild(cell);
     })
 }
-placeMarker(gameBoard, 'O', 0);
-placeMarker(gameBoard, 'O', 4);
-placeMarker(gameBoard, 'O', 8);
+
 console.log(checkWinner());
+renderBoard();
