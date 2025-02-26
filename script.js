@@ -62,5 +62,11 @@ function renderBoard(){
     })
 }
 
+document.getElementById("reset").addEventListener("click",() => {
+        gameBoard = createBoard();
+        gameOver = false;
+        currentPlayer = 'X';
+        renderBoard();
+})
 console.log(checkWinner());
 renderBoard();
