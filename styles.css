@@ -3,7 +3,7 @@
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 5px;
-    outline: auto;
+    outline: auto
 }
 
 .cell {
@@ -12,10 +12,15 @@
     align-items: center;
     font-size: 2em;
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     cursor: pointer;
+    width: 100px;
+    height: 100px;
 }
 
+.cell:hover{
+  background-color: lightblue;
+}
 button {
       /* Variables */
   --button_radius: 0.75em;
@@ -44,9 +49,11 @@ button {
 button:hover #reset {
   /* Pull the button upwards when hovered */
   transform: translateY(-0.33em);
+
 }
 
 button:active #reset {
   /* Push the button downwards when pressed */
   transform: translateY(0);
 }
+
