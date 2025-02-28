@@ -66,8 +66,13 @@ function renderBoard(){
     gameBoard.forEach((value , index) => {
         const cell = document.createElement('div');
         cell.classList.add('cell');
-        cell.textContent = value; // puts 'X' or 'O' in the cell
 
+        if (value === 'X'){
+            cell.innerHTML = '<img src = "x.png" alt = "X" width = "100" height = "100">';
+        } else if (value === 'O'){
+            cell.innerHTML = '<img src = "o.png" alt = "O" width = "100" height = "100">';
+        }
+       
         cell.addEventListener("click", () => placeMarker(gameBoard, currentPlayer, index));
         boardContainer.appendChild(cell);
     })
