@@ -27,9 +27,8 @@ function placeMarker(board, marker, position){
 
         // Check for tie
         if (!gameBoard.includes('')) {
-            alert('It\s a tie!');
+            document.getElementById("message").textContent = "It's a Tie! 😐";
             gameOver = true;
-            console.log("TIE");
             return;
         }
         
@@ -47,16 +46,13 @@ function checkWinner(){
         [0,3,6], [1,4,7], [2,5,8], //vertical
         [0,4,8], [2,4,6] //diagonal
     ];
-    //array destructing
-    /*for (let i = 0; i < winningCombos.length; i++){
-        const [a,b,c] = winningCombos[i];
-        if(gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]){
-            console.log('Winner! is', gameBoard[a]);
-            return gameBoard[a];
-        }
-    }  */ 
+    
    for (let [a, b, c] of winningCombos) {
         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+            document.getElementById("message").textContent = `Player ${gameBoard[a]} Wins! 🎉`;
+            document.querySelectorAll(".cell")[a].classList.add("winner");
+            document.querySelectorAll(".cell")[b].classList.add("winner");
+            document.querySelectorAll(".cell")[c].classList.add("winner");
             return [gameBoard[a], [a, b, c]]; // Return winner + winning cells
         }
     }  
@@ -86,6 +82,8 @@ function resetGame(){
     gameBoard = createBoard();
     gameOver = false;
     currentPlayer = 'X';
+    document.getElementById("message").textContent = "";
+    document.querySelectorAll(".cell").forEach(cell => cell.classList.remove("winner"))
     renderBoard();
     boardContainer.style.opacity = "1"; // fades in
     }, 100);
