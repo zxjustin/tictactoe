@@ -80,10 +80,15 @@ function renderBoard(){
 document.getElementById("reset").addEventListener("click",(resetGame)); 
 
 function resetGame(){
-        gameBoard = createBoard();
-        gameOver = false;
-        currentPlayer = 'X';
-        renderBoard();
+    const boardContainer = document.getElementById('board');
+    boardContainer.style.opacity = "0"; // fades out
+    setTimeout(() => {
+    gameBoard = createBoard();
+    gameOver = false;
+    currentPlayer = 'X';
+    renderBoard();
+    boardContainer.style.opacity = "1"; // fades in
+    }, 100);
 }
 console.log(checkWinner());
 renderBoard();

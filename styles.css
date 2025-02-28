@@ -1,7 +1,18 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/50598/concrete-wall-background.jpg) center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+}
+
 #board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: repeat(3, 300px);
     gap: 5px;
     outline: auto
 }
@@ -14,13 +25,19 @@
     background-color: #f0f0f0;
     border: 2px solid #ccc;
     cursor: pointer;
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
 }
 
 .cell:hover{
   background-color: lightblue;
 }
+
+.cell.winner {
+  background-color: yellow;
+  color: red;
+}
+
 button {
       /* Variables */
   --button_radius: 0.75em;
